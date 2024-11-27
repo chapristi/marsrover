@@ -54,38 +54,16 @@ public class Rover implements Robot{
 		
 	}
 
-	
-	    public void executeCommands(String commands) {
-	        for (char command : commands.toCharArray()) {
-	            switch (command) {
-	                case 'f':
-	                    try {
-	                        this.avancer();
-	                    } catch (ObstacleRencontreException e) {
-	                        System.out.println("Commande interrompue : " + e.getMessage());
-	                        return; 
-	                    }
-	                    break;
-	                case 'b':
-	                    try {
-	                        this.reculer();
-	                    } catch (ObstacleRencontreException e) {
-	                        System.out.println("Commande interrompue : " + e.getMessage());
-	                        return;
-	                    }
-	                    break;
-	                case 'l':
-	                	 this.tournerGauche();
-	                    break;
-	                case 'r':
-	                	 this.tournerDroite();
-	                    break;
-	                default:
-	                    System.out.println("Commande invalide : " + command);
-	                    break;
-	            }
-	  
-	        }
+	public void executeCommands(String commands) throws ObstacleRencontreException {
+	     for (char command : commands.toCharArray()) {
+	    		 switch (command) {
+	    		        case 'f' -> this.avancer();
+	    		        case 'b' -> this.reculer();
+	    		        case 'l' -> this.tournerGauche();
+	    		        case 'r' -> this.tournerDroite();
+	    		        default -> throw new IllegalArgumentException("Commande invalide : " + command);
+	    		 }
+	    	}
 	  }
 
 	
